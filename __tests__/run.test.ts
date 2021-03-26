@@ -67,7 +67,8 @@ describe('Testing all functions.', () => {
         jest.spyOn(core, 'getInput').mockReturnValue('invalid');
 
         expect(() => run.getKubeconfig()).toThrow('Invalid method specified. Acceptable values are kubeconfig and service-account.');
-        expect(core.getInput).toBeCalled();         
+        expect(core.getInput).toBeCalledWith('method', { required: true });         
+        expect(core.getInput).toBeCalledWith('kubeconfig', { required: true });                
     });
 
     test('getKubeconfig() - return kubeconfig from input', () => {
@@ -111,7 +112,8 @@ describe('Testing all functions.', () => {
         });
 
         expect(run.getKubeconfig()).toBe(kubeconfig);
-        expect(core.getInput).toBeCalledTimes(3);         
+        expect(core.getInput).toBeCalledWith('method', { required: true });         
+        expect(core.getInput).toBeCalledWith('kubeconfig', { required: true });         
     });
 
     test('getKubeconfig() - throw error if empty config provided', () => {
@@ -137,7 +139,8 @@ describe('Testing all functions.', () => {
         });
 
         expect(() => run.getKubeconfig()).toThrow('The service account secret yaml does not contain data; field. Make sure that its present and try again.');
-        expect(core.getInput).toBeCalledTimes(3);         
+        expect(core.getInput).toBeCalledWith('method', { required: true });         
+        expect(core.getInput).toBeCalledWith('kubeconfig', { required: true });                 
     });
     
     test('getKubeconfig() - throw error if data.token field doesn\'t exist', () => {
@@ -152,7 +155,8 @@ describe('Testing all functions.', () => {
         });
 
         expect(() => run.getKubeconfig()).toThrow('The service account secret yaml does not contain data.token; field. Make sure that its present and try again.');
-        expect(core.getInput).toBeCalledTimes(3);         
+        expect(core.getInput).toBeCalledWith('method', { required: true });         
+        expect(core.getInput).toBeCalledWith('kubeconfig', { required: true });                 
     });
 
     test('getKubeconfig() - throw error if data[ca.crt] field doesn\'t exist', () => {
@@ -167,7 +171,8 @@ describe('Testing all functions.', () => {
         });
 
         expect(() => run.getKubeconfig()).toThrow('The service account secret yaml does not contain data[ca.crt]; field. Make sure that its present and try again.');
-        expect(core.getInput).toBeCalledTimes(3);         
+        expect(core.getInput).toBeCalledWith('method', { required: true });         
+        expect(core.getInput).toBeCalledWith('kubeconfig', { required: true });               
     });
     
     test('setContext() - set context using kubectl', async () => {
