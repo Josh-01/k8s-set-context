@@ -4,7 +4,7 @@ This action can be used to set cluster context before other actions like [`azure
 
 There are two approaches for specifying the deployment target:
 
-- Kubeconfig file provided as input to the action
+- Kubeconfig file provided as input to the action df
 - Service account approach where the secret associated with the service account is provided as input to the action
 
 If inputs related to both these approaches are provided, kubeconfig approach related inputs are given precedence.
